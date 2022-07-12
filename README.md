@@ -11,4 +11,6 @@ X Implementasikan penyimpanan dengan mekanisme berbasis project
 X Buat editor daftar kitab
 X Buat editor daftar asatidzah
 X Buat editor daftar lokasi
+- Implementasikan pemilihan template untuk text generator
+- Implementasikan generate text
 - Sediakan fitur mapping variabel ke file template
