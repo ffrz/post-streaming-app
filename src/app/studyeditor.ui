@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StudyEditor</class>
+ <widget class="QWidget" name="StudyEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>866</width>
+    <height>716</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StudyEditor</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_10">
+     <item>
+      <widget class="QGroupBox" name="groupBox1">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Informasi Kajian:</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_6">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Pemateri / Ustadz</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QComboBox" name="teacherComboBox">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="teacherDescriptionEdit">
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Jenis Kajian</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="studyTypeComboBox">
+          <property name="currentText">
+           <string>Kajian Kitab</string>
+          </property>
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>Tausyiah</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Kajian Kitab</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Muhadharah</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QGroupBox" name="studyComboBox">
+          <property name="title">
+           <string>Pembahasan:</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_3">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Judul</string>
+             </property>
+             <property name="buddy">
+              <cstring>studyTitleComboBox</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QComboBox" name="studyTitleComboBox">
+               <property name="editable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Sub Judul</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="studySubTitleEdit">
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>Penulis</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="authorEdit"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>Pensyarah</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="narratorEdit"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Pembahasan</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QPlainTextEdit" name="studyDescriptionEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>65</height>
+              </size>
+             </property>
+             <property name="plainText">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QGroupBox" name="dateTimeGroupBox">
+          <property name="title">
+           <string>Waktu:</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <property name="leftMargin">
+            <number>6</number>
+           </property>
+           <property name="topMargin">
+            <number>6</number>
+           </property>
+           <property name="rightMargin">
+            <number>6</number>
+           </property>
+           <property name="bottomMargin">
+            <number>6</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Tanggal Masehi</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QDateEdit" name="dateEdit">
+             <property name="displayFormat">
+              <string>dddd, dd/MM/yyyy</string>
+             </property>
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Tanggal Hijriyah</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Jam</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0,1">
+             <item>
+              <widget class="QComboBox" name="startTimeComboBox">
+               <property name="editable">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Pukul ... WIB</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pukul ... WIT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pukul ... WITA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ba'da Subuh</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ba'da Dzuhur</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ba'da Shalat Jum'at</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ba'da Ashar</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ba'da Isya</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ba'da Maghrib</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>s.d</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="endTimeComboBox">
+               <property name="editable">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>selesai</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sebelum Dzuhur</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sebelum Ashar</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sebelum Maghrib</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sebelum Isya</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pukul ... WIB</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pukul ... WIT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pukul ... WITA</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QSpinBox" name="hijriDateSpinBox">
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>30</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="hijriMonthComboBox">
+               <item>
+                <property name="text">
+                 <string>Muharram</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Shafar</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rabi'ul Awal</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rabi'ul Akhir</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jumadil Awal</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jumadil Akhir</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rajab</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sya'ban</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ramadhan</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Syawwal</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dzulqa'dah</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dzulhijjah</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="hijriYearSpinBox">
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>1400</number>
+               </property>
+               <property name="maximum">
+                <number>9999</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QGroupBox" name="locationGroupBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Lokasi:</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Tempat</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1">
+             <item>
+              <widget class="QComboBox" name="placeComboBox">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="editable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Alamat</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="addressEdit">
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Link Google Maps</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="locationUrlEdit">
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Link / URL Poster</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLineEdit" name="studyUrlEdit">
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="groupBox2">
+         <property name="title">
+          <string>Tools:</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QGroupBox" name="audioGroupBox">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="title">
+             <string>Kompres audio dan update MP3 tag:</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QFormLayout" name="formLayout_5">
+             <property name="leftMargin">
+              <number>6</number>
+             </property>
+             <property name="topMargin">
+              <number>6</number>
+             </property>
+             <property name="rightMargin">
+              <number>6</number>
+             </property>
+             <property name="bottomMargin">
+              <number>6</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Input File Audio (MP3)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QLineEdit" name="audioEdit"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="browseAudioButton">
+                 <property name="maximumSize">
+                  <size>
+                   <width>30</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Bitrate kompresi</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="audioCompressionComboBox"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>Perkiraan ukuran file</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="ouputFileSizeLabel">
+               <property name="text">
+                <string>0 MB</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QProgressBar" name="audioProcessProgressBar">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="processButton">
+              <property name="text">
+               <string>&amp;Kompres</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="templateGroupBox">
+            <property name="title">
+             <string>Generator Teks:</string>
+            </property>
+            <layout class="QFormLayout" name="formLayout_4">
+             <property name="leftMargin">
+              <number>6</number>
+             </property>
+             <property name="topMargin">
+              <number>6</number>
+             </property>
+             <property name="rightMargin">
+              <number>6</number>
+             </property>
+             <property name="bottomMargin">
+              <number>6</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Template Teks Kajian</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
+               <item>
+                <widget class="QLineEdit" name="studyTextTemplateEdit">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="browseStudyTextTemplateButton">
+                 <property name="maximumSize">
+                  <size>
+                   <width>30</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Template Teks Audio Kajian</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QLineEdit" name="studyAudioTextTemplateEdit">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="browseStudyAudioTextTemplateButton">
+                 <property name="maximumSize">
+                  <size>
+                   <width>30</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>6</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>teacherComboBox</tabstop>
+  <tabstop>teacherDescriptionEdit</tabstop>
+  <tabstop>studyTypeComboBox</tabstop>
+  <tabstop>studyTitleComboBox</tabstop>
+  <tabstop>studySubTitleEdit</tabstop>
+  <tabstop>authorEdit</tabstop>
+  <tabstop>narratorEdit</tabstop>
+  <tabstop>studyDescriptionEdit</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>hijriDateSpinBox</tabstop>
+  <tabstop>hijriMonthComboBox</tabstop>
+  <tabstop>hijriYearSpinBox</tabstop>
+  <tabstop>startTimeComboBox</tabstop>
+  <tabstop>endTimeComboBox</tabstop>
+  <tabstop>placeComboBox</tabstop>
+  <tabstop>addressEdit</tabstop>
+  <tabstop>locationUrlEdit</tabstop>
+  <tabstop>studyUrlEdit</tabstop>
+  <tabstop>audioGroupBox</tabstop>
+  <tabstop>audioEdit</tabstop>
+  <tabstop>browseAudioButton</tabstop>
+  <tabstop>audioCompressionComboBox</tabstop>
+  <tabstop>processButton</tabstop>
+  <tabstop>studyTextTemplateEdit</tabstop>
+  <tabstop>browseStudyTextTemplateButton</tabstop>
+  <tabstop>studyAudioTextTemplateEdit</tabstop>
+  <tabstop>browseStudyAudioTextTemplateButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
