@@ -8,6 +8,7 @@
 #include "locationmanager.h"
 #include "bookmanager.h"
 #include "teachermanager.h"
+#include "studytexttemplatemanager.h"
 
 #include <QSettings>
 #include <QDir>
@@ -33,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->manageTeachersAction, SIGNAL(triggered(bool)), SLOT(manageTeachers()));
     connect(ui->manageBooksAction, SIGNAL(triggered(bool)), SLOT(manageBooks()));
     connect(ui->manageLocationsAction, SIGNAL(triggered(bool)), SLOT(manageLocations()));
+    connect(ui->manageStudyTextTemplatesAction, SIGNAL(triggered(bool)), SLOT(manageStudyTextTemplates()));
+    connect(ui->manageAudioTextTemplatesAction, SIGNAL(triggered(bool)), SLOT(manageAudioTextTemplates()));
 
     updateMenu();
 }
@@ -128,7 +131,8 @@ void MainWindow::saveProject()
 
 void MainWindow::exit()
 {
-    closeProject();
+    if (!closeProject())
+        return;
     qApp->quit();
 }
 
@@ -163,4 +167,15 @@ void MainWindow::manageLocations()
         connect(&manager, SIGNAL(dataChanged()), editor, SLOT(refreshLocations()));
     }
     manager.exec();
+}
+
+void MainWindow::manageStudyTextTemplates()
+{
+    StudyTextTemplateManager manager(this);
+    manager.exec();
+}
+
+void MainWindow::manageAudioTextTemplates()
+{
+    QMessageBox::information(this, "Informasi", "Fitur belum tersedia");
 }

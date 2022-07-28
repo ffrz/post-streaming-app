@@ -30,8 +30,21 @@ struct Book
     Book() : id(0) {}
 };
 
+struct TextTemplate
+{
+    int id;
+    QString name;
+    QString content;
+    TextTemplate() : id(0) {}
+};
+
+typedef TextTemplate StudyTextTemplate;
+typedef TextTemplate AudioTextTemplate;
+
 typedef QList<Teacher> Teachers;
 typedef QList<Book> Books;
 typedef QList<Location> Locations;
+typedef QList<StudyTextTemplate> StudyTextTemplates;
+typedef QList<AudioTextTemplate> AudioTextTemplates;
 
 #endif // DATA_H

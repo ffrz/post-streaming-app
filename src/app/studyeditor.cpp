@@ -239,13 +239,26 @@ void StudyEditor::onProcessButtonClicked()
     QString compression = ui->audioCompressionComboBox->currentData().toString();
     // generate teks audio
     // compress & update mp3 tag
-    audioProcess->command =
-            QString("ffmpeg -y -i \"%1\""
-                    " -metadata title=\"%2\" -metadata artist=\"%3\" -metadata album=\"%4\""
-                    " -map 0:a:0 -b:a %5 \"%6\"")
-            .arg(audioInputFileName, studyTitle, teacherName, studyType, compression,
-                 _outputAudioFileName);
+    QString command = "ffmpeg -y -i \"{input}\""
+                      " -metadata title=\"{title}\""
+                      " -metadata artist=\"{artist}\""
+                      " -metadata album=\"{album}\""
+                      " -metadata date=\"{date}\""
+                      " -metadata track=\"1\""
+                      " -metadata genre=\"{genre}\""
+                      " -map 0:a:0 -b:a"
+                      " {compression}"
+                      " \"{output}\"";
+    command.replace("{input}", audioInputFileName);
+    command.replace("{title}", studyTitle);
+    command.replace("{artist}", teacherName + " حفظه الله");
+    command.replace("{genre}", studyType);
+    command.replace("{album}", studyType);
+    command.replace("{date}", QString::number(ui->dateEdit->date().year()));
+    command.replace("{compression}", compression);
+    command.replace("{output}", _outputAudioFileName);
 
+    audioProcess->command = command;
     audioProcess->start();
     ui->processButton->setEnabled(false);
     ui->audioProcessProgressBar->setEnabled(true);

@@ -18,6 +18,7 @@ SOURCES += \
     newprojectdialog.cpp \
     projectdocument.cpp \
     studyeditor.cpp \
+    studytexttemplatemanager.cpp \
     teachermanager.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     newprojectdialog.h \
     projectdocument.h \
     studyeditor.h \
+    studytexttemplatemanager.h \
     teachermanager.h
 
 FORMS += \
@@ -42,6 +44,8 @@ FORMS += \
     mainwindow.ui \
     newprojectdialog.ui \
     studyeditor.ui \
+    studytexttemplateeditor.ui \
+    studytexttemplatemanager.ui \
     teachereditor.ui \
     teachermanager.ui
 

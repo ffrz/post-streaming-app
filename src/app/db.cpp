@@ -39,6 +39,18 @@ void init() {
            " narrator 	TEXT NOT NULL DEFAULT '',"
            " PRIMARY KEY(id AUTOINCREMENT)"
            ")");
+    q.exec("CREATE TABLE IF NOT EXISTS study_text_templates ("
+           " id         INTEGER NOT NULL DEFAULT 0,"
+           " name       TEXT NOT NULL DEFAULT '',"
+           " content    TEXT NOT NULL DEFAULT '',"
+           " PRIMARY KEY(id AUTOINCREMENT)"
+           ")");
+    q.exec("CREATE TABLE IF NOT EXISTS audio_text_templates ("
+           " id         INTEGER NOT NULL DEFAULT 0,"
+           " name       TEXT NOT NULL DEFAULT '',"
+           " content    TEXT NOT NULL DEFAULT '',"
+           " PRIMARY KEY(id AUTOINCREMENT)"
+           ")");
 }
 
 bool exec(QSqlQuery &q, const QString& file, int line)
@@ -242,7 +254,7 @@ Books getAllBooks(const QString& col)
         item.id = q.value("id").toInt();
         item.title = q.value("title").toString();
         item.subtitle = q.value("subtitle").toString();
-        item.authors = q.value("subtitle").toString();
+        item.authors = q.value("authors").toString();
         item.narrator = q.value("narrator").toString();
         items.append(item);
     }
@@ -259,7 +271,7 @@ Book getBookById(int id)
         d.id = q.value("id").toInt();
         d.title = q.value("title").toString();
         d.subtitle = q.value("subtitle").toString();
-        d.authors = q.value("subtitle").toString();
+        d.authors = q.value("authors").toString();
         d.narrator = q.value("narrator").toString();
     }
     return d;
@@ -305,5 +317,80 @@ bool removeBook(const Book &book)
     return DB_EXEC(q);
 }
 
+StudyTextTemplates getAllStudyTextTemplatesOrderById()
+{
+    return getAllStudyTextTemplates("id");
+}
+
+StudyTextTemplates getAllStudyTextTemplatesOrderByName()
+{
+    return getAllStudyTextTemplates("name");
+}
+
+StudyTextTemplates getAllStudyTextTemplates(const QString& col)
+{
+    StudyTextTemplates items;
+    QSqlQuery q(db());
+    q.prepare("select id, name, content from study_text_templates order by " + col + " asc");
+    DB_EXEC(q);
+    while (q.next()) {
+        StudyTextTemplate d;
+        d.id = q.value("id").toInt();
+        d.name = q.value("name").toString();
+        d.content = q.value("content").toString();
+        items.append(d);
+    }
+    return items;
+}
+
+StudyTextTemplate getStudyTextTemplateById(int id)
+{
+    StudyTextTemplate d;
+    QSqlQuery q(db());
+    q.prepare("select id, name, content from study_text_templates where id=:id");
+    q.bindValue(":id", id);
+    if (DB_EXEC(q) && q.next()) {
+        d.id = q.value("id").toInt();
+        d.name = q.value("name").toString();
+        d.content = q.value("content").toString();
+    }
+    return d;
+}
+
+bool saveStudyTextTemplate(StudyTextTemplate &d)
+{
+    QSqlQuery q(db());
+    if (d.id == 0) {
+        q.prepare("insert into study_text_templates"
+                  " (name, content)"
+                  " values"
+                  " (:name,:content)");
+    }
+    else {
+        q.prepare("update study_text_templates set"
+                  " name=:name,"
+                  " content=:content"
+                  " where id=:id");
+        q.bindValue(":id", d.id);
+    }
+    q.bindValue(":name", d.name);
+    q.bindValue(":content", d.content);
+
+    if (!DB_EXEC(q))
+        return false;
+
+    if (d.id == 0)
+        d.id = q.lastInsertId().toInt();
+
+    return true;
+}
+
+bool removeStudyTextTemplate(const StudyTextTemplate &d)
+{
+    QSqlQuery q(db());
+    q.prepare("delete from study_text_templates where id=:id");
+    q.bindValue(":id", d.id);
+    return DB_EXEC(q);
+}
 
 }

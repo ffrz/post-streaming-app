@@ -56,7 +56,7 @@ void NewProjectDialog::accept()
 void NewProjectDialog::validateInput()
 {
     QString projectName = ui->nameEdit->text().trimmed();
-    QRegularExpression re("^[a-zA-Z_0-9]+$");
+    QRegularExpression re("^[a-zA-Z0-9_\\-]+$");
     QRegularExpressionMatch match = re.match(projectName);
 
     QString parentDir = ui->locationEdit->text();

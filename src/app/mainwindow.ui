@@ -54,7 +54,15 @@
      <addaction name="manageBooksAction"/>
      <addaction name="manageLocationsAction"/>
     </widget>
+    <widget class="QMenu" name="menu_Text_Generator">
+     <property name="title">
+      <string>&amp;Text Generator</string>
+     </property>
+     <addaction name="manageStudyTextTemplatesAction"/>
+     <addaction name="manageAudioTextTemplatesAction"/>
+    </widget>
     <addaction name="menu_References"/>
+    <addaction name="menu_Text_Generator"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="toolsMenu"/>
@@ -114,6 +122,16 @@
   <action name="manageLocationsAction">
    <property name="text">
     <string>&amp;Lokasi</string>
+   </property>
+  </action>
+  <action name="manageStudyTextTemplatesAction">
+   <property name="text">
+    <string>Template &amp;Teks Kajian</string>
+   </property>
+  </action>
+  <action name="manageAudioTextTemplatesAction">
+   <property name="text">
+    <string>Template Teks &amp;Audio Kajian</string>
    </property>
   </action>
  </widget>

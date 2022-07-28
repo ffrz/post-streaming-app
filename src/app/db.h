@@ -16,23 +16,30 @@ bool exec(QSqlQuery &q, const QString& file, int line);
 Locations getAllLocationsOrderById();
 Locations getAllLocationsOrderByName();
 Locations getAllLocations(const QString& orderColumn);
+Location getLocationById(int id);
 bool saveLocation(Location &data);
 bool removeLocation(const Location &data);
-Location getLocationById(int id);
 
 Teachers getAllTeachersOrderById();
 Teachers getAllTeachersOrderByName();
 Teachers getAllTeachers(const QString& orderColumn);
+Teacher getTeacherById(int id);
 bool saveTeacher(Teacher &teacher);
 bool removeTeacher(const Teacher &teacher);
-Teacher getTeacherById(int id);
 
 Books getAllBooksOrderById();
 Books getAllBooksOrderByTitle();
 Books getAllBooks(const QString& orderColumn);
+Book getBookById(int id);
 bool saveBook(Book &book);
 bool removeBook(const Book &book);
-Book getBookById(int id);
+
+StudyTextTemplates getAllStudyTextTemplatesOrderById();
+StudyTextTemplates getAllStudyTextTemplatesOrderByName();
+StudyTextTemplates getAllStudyTextTemplates(const QString& orderColumn);
+StudyTextTemplate getStudyTextTemplateById(int id);
+bool saveStudyTextTemplate(StudyTextTemplate &data);
+bool removeStudyTextTemplate(const StudyTextTemplate &data);
 
 }
 
