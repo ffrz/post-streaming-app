@@ -25,44 +25,30 @@
    </property>
    <widget class="QMenu" name="fileMenu">
     <property name="title">
-     <string>&amp;File</string>
+     <string>&amp;Berkas</string>
     </property>
     <addaction name="newAction"/>
     <addaction name="openAction"/>
     <addaction name="closeAction"/>
     <addaction name="separator"/>
     <addaction name="saveAction"/>
-    <addaction name="saveAsAction"/>
     <addaction name="separator"/>
     <addaction name="exitAction"/>
    </widget>
    <widget class="QMenu" name="helpMenu">
     <property name="title">
-     <string>&amp;Help</string>
+     <string>&amp;Bantuan</string>
     </property>
     <addaction name="aboutAction"/>
    </widget>
    <widget class="QMenu" name="toolsMenu">
     <property name="title">
-     <string>&amp;Tools</string>
+     <string>&amp;Referensi</string>
     </property>
-    <widget class="QMenu" name="menu_References">
-     <property name="title">
-      <string>&amp;References</string>
-     </property>
-     <addaction name="manageTeachersAction"/>
-     <addaction name="manageBooksAction"/>
-     <addaction name="manageLocationsAction"/>
-    </widget>
-    <widget class="QMenu" name="menu_Text_Generator">
-     <property name="title">
-      <string>&amp;Text Generator</string>
-     </property>
-     <addaction name="manageStudyTextTemplatesAction"/>
-     <addaction name="manageAudioTextTemplatesAction"/>
-    </widget>
-    <addaction name="menu_References"/>
-    <addaction name="menu_Text_Generator"/>
+    <addaction name="manageTeachersAction"/>
+    <addaction name="manageBooksAction"/>
+    <addaction name="manageLocationsAction"/>
+    <addaction name="manageStudyTextTemplatesAction"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="toolsMenu"/>
@@ -71,42 +57,32 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="exitAction">
    <property name="text">
-    <string>E&amp;xit</string>
+    <string>K&amp;eluar</string>
    </property>
   </action>
   <action name="aboutAction">
    <property name="text">
-    <string>&amp;About</string>
+    <string>&amp;Tentang Aplikasi</string>
    </property>
   </action>
   <action name="newAction">
    <property name="text">
-    <string>&amp;New ...</string>
+    <string>&amp;Baru ...</string>
    </property>
   </action>
   <action name="openAction">
    <property name="text">
-    <string>&amp;Open ..</string>
+    <string>B&amp;uka</string>
    </property>
   </action>
   <action name="closeAction">
    <property name="text">
-    <string>&amp;Close</string>
-   </property>
-  </action>
-  <action name="action_Save">
-   <property name="text">
-    <string>&amp;Save</string>
+    <string>&amp;Tutup</string>
    </property>
   </action>
   <action name="saveAction">
    <property name="text">
-    <string>&amp;Save</string>
-   </property>
-  </action>
-  <action name="saveAsAction">
-   <property name="text">
-    <string>Save As ...</string>
+    <string>&amp;Simpan</string>
    </property>
   </action>
   <action name="manageTeachersAction">
@@ -126,12 +102,7 @@
   </action>
   <action name="manageStudyTextTemplatesAction">
    <property name="text">
-    <string>Template &amp;Teks Kajian</string>
-   </property>
-  </action>
-  <action name="manageAudioTextTemplatesAction">
-   <property name="text">
-    <string>Template Teks &amp;Audio Kajian</string>
+    <string>Template &amp;Teks</string>
    </property>
   </action>
  </widget>

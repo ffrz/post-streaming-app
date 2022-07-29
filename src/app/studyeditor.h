@@ -24,6 +24,7 @@ public slots:
     void refreshTeachers();
     void refreshLocations();
     void refreshBooks();
+    void refreshStudyTextTemplates();
 
 private slots:
     void onTeacherChanged(int);
@@ -31,13 +32,12 @@ private slots:
     void onStudyTypeChanged(int);
     void onStudyTitleChanged(int);
     void onBrowseAudioButtonClicked();
-    void onBrowseStudyTextTemplateButton();
-    void onBrowseStudyAudioTextTemplateButton();
     void onDateChanged(const QDate&);
     void onProcessButtonClicked();
     void onAudioProcessFinished();
     void checkAudioProgress();
     void recalculateEstimatedOutputAudioSize();
+    void showRreviewStudyTextDialog();
 
 private:
     Ui::StudyEditor *ui;

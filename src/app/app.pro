@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     newprojectdialog.cpp \
+    previewtextdialog.cpp \
     projectdocument.cpp \
     studyeditor.cpp \
     studytexttemplatemanager.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     locationmanager.h \
     mainwindow.h \
     newprojectdialog.h \
+    previewtextdialog.h \
     projectdocument.h \
     studyeditor.h \
     studytexttemplatemanager.h \
@@ -43,6 +45,7 @@ FORMS += \
     locationmanager.ui \
     mainwindow.ui \
     newprojectdialog.ui \
+    previewtextdialog.ui \
     studyeditor.ui \
     studytexttemplateeditor.ui \
     studytexttemplatemanager.ui \

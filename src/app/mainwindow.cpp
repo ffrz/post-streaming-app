@@ -30,12 +30,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->saveAction, SIGNAL(triggered(bool)), SLOT(saveProject()));
     connect(ui->exitAction, SIGNAL(triggered(bool)), SLOT(exit()));
     connect(ui->aboutAction, SIGNAL(triggered(bool)), SLOT(about()));
-
     connect(ui->manageTeachersAction, SIGNAL(triggered(bool)), SLOT(manageTeachers()));
     connect(ui->manageBooksAction, SIGNAL(triggered(bool)), SLOT(manageBooks()));
     connect(ui->manageLocationsAction, SIGNAL(triggered(bool)), SLOT(manageLocations()));
     connect(ui->manageStudyTextTemplatesAction, SIGNAL(triggered(bool)), SLOT(manageStudyTextTemplates()));
-    connect(ui->manageAudioTextTemplatesAction, SIGNAL(triggered(bool)), SLOT(manageAudioTextTemplates()));
 
     updateMenu();
 }
@@ -49,7 +47,6 @@ void MainWindow::updateMenu()
 {
     bool hasActiveProject = editor != nullptr;
     ui->saveAction->setEnabled(hasActiveProject);
-    ui->saveAsAction->setEnabled(hasActiveProject);
     ui->closeAction->setEnabled(hasActiveProject);
 }
 
@@ -172,10 +169,8 @@ void MainWindow::manageLocations()
 void MainWindow::manageStudyTextTemplates()
 {
     StudyTextTemplateManager manager(this);
+    if (editor) {
+        connect(&manager, SIGNAL(dataChanged()), editor, SLOT(refreshStudyTextTemplates()));
+    }
     manager.exec();
-}
-
-void MainWindow::manageAudioTextTemplates()
-{
-    QMessageBox::information(this, "Informasi", "Fitur belum tersedia");
 }

@@ -2,6 +2,7 @@
 #include "ui_studyeditor.h"
 #include "projectdocument.h"
 #include "db.h"
+#include "previewtextdialog.h"
 #include <QTimer>
 #include <QSqlQuery>
 #include <QFileDialog>
@@ -51,6 +52,7 @@ StudyEditor::StudyEditor(ProjectDocument *d, QWidget *parent)
     refreshTeachers();
     refreshLocations();
     refreshBooks();
+    refreshStudyTextTemplates();
 
     ui->teacherComboBox->setCurrentIndex(-1);
     ui->studyTitleComboBox->setCurrentIndex(-1);
@@ -90,12 +92,11 @@ StudyEditor::StudyEditor(ProjectDocument *d, QWidget *parent)
     connect(ui->studyTitleComboBox, SIGNAL(activated(int)), SLOT(onStudyTitleChanged(int)));
     connect(ui->studyTypeComboBox, SIGNAL(activated(int)), SLOT(onStudyTypeChanged(int)));
     connect(ui->browseAudioButton, SIGNAL(clicked()), SLOT(onBrowseAudioButtonClicked()));
-    connect(ui->browseStudyTextTemplateButton, SIGNAL(clicked()), SLOT(onBrowseStudyTextTemplateButton()));
-    connect(ui->browseStudyAudioTextTemplateButton, SIGNAL(clicked()), SLOT(onBrowseStudyAudioTextTemplateButton()));
     connect(ui->audioCompressionComboBox, SIGNAL(currentIndexChanged(int)), SLOT(recalculateEstimatedOutputAudioSize()));
     connect(ui->processButton, SIGNAL(clicked()), SLOT(onProcessButtonClicked()));
     connect(audioProcess, SIGNAL(finished()), SLOT(onAudioProcessFinished()));
     connect(progressTimer, SIGNAL(timeout()), SLOT(checkAudioProgress()));
+    connect(ui->generateTextButton, SIGNAL(clicked()), SLOT(showRreviewStudyTextDialog()));
 
     // final initialization
     onStudyTypeChanged(ui->studyTypeComboBox->currentIndex());
@@ -158,30 +159,6 @@ void StudyEditor::onBrowseAudioButtonClicked()
     ui->audioEdit->setText(filename);
 
     recalculateEstimatedOutputAudioSize();
-}
-
-void StudyEditor::onBrowseStudyTextTemplateButton()
-{
-    QString filename = QFileDialog::getOpenFileName(this, "Pilih Template Teks Kajian", "", "*.txt");
-
-    if (filename.isEmpty()) {
-        ui->studyTextTemplateEdit->clear();
-        return;
-    }
-
-    ui->studyTextTemplateEdit->setText(filename);
-}
-
-void StudyEditor::onBrowseStudyAudioTextTemplateButton()
-{
-    QString filename = QFileDialog::getOpenFileName(this, "Pilih Template Audio Teks Kajian", "", "*.txt");
-
-    if (filename.isEmpty()) {
-        ui->studyAudioTextTemplateEdit->clear();
-        return;
-    }
-
-    ui->studyAudioTextTemplateEdit->setText(filename);
 }
 
 void StudyEditor::onDateChanged(const QDate& date)
@@ -272,6 +249,7 @@ void StudyEditor::onStudyTypeChanged(int index)
     ui->authorEdit->setEnabled(isBookStudy);
     ui->narratorEdit->setEnabled(isBookStudy);
     ui->studyDescriptionEdit->setEnabled(isBookStudy);
+    ui->titleLabel->setText(isBookStudy ? "Nama Kitab" : "Judul Kajian");
 }
 
 void StudyEditor::save()
@@ -392,4 +370,51 @@ void StudyEditor::refreshBooks()
         ui->studyTitleComboBox->addItem(d.title, d.id);
     }
     ui->studyTitleComboBox->lineEdit()->setText(oldText);
+}
+
+void StudyEditor::refreshStudyTextTemplates()
+{
+    ui->textTemplateComboBox->clear();
+    for (const StudyTextTemplate &d: db::getAllStudyTextTemplatesOrderByName()) {
+        ui->textTemplateComboBox->addItem(d.name, d.id);
+    }
+    ui->textTemplateComboBox->setCurrentIndex(-1);
+}
+
+void StudyEditor::showRreviewStudyTextDialog()
+{
+    int id = ui->textTemplateComboBox->currentData().toInt();
+    if (id == 0) {
+        QMessageBox::information(this, "Peringatan", "Silahkan pilih template terlebih dahulu.");
+        return;
+    }
+    StudyTextTemplate tpl = db::getStudyTextTemplateById(id);
+    QString content = tpl.content;
+    QLocale locale  = QLocale(QLocale::Indonesian, QLocale::Indonesia);
+
+    content.replace("[NAMA_USTADZ]", ui->teacherComboBox->lineEdit()->text().trimmed());
+    content.replace("[TITEL_USTADZ]", ui->teacherDescriptionEdit->text().trimmed());
+    content.replace("[JUDUL_KITAB]", ui->studyTitleComboBox->lineEdit()->text().trimmed());
+    content.replace("[JUDUL_KAJIAN]", ui->studyTitleComboBox->lineEdit()->text().trimmed());
+    content.replace("[SUBJUDUL]", ui->studySubTitleEdit->text().trimmed());
+    content.replace("[PEMBAHASAN]", ui->studyDescriptionEdit->toPlainText().trimmed());
+    content.replace("[PENULIS]", ui->authorEdit->text().trimmed());
+    content.replace("[PENSYARAH]", ui->narratorEdit->text().trimmed());
+    content.replace("[URL_POSTER]", ui->studyUrlEdit->text().trimmed());
+    content.replace("[NAMA_TEMPAT]", ui->placeComboBox->lineEdit()->text().trimmed());
+    content.replace("[ALAMAT]", ui->addressEdit->text().trimmed());
+    content.replace("[URL_LOKASI]", ui->locationUrlEdit->text().trimmed());
+    content.replace("[HARI]", locale.toString(ui->dateEdit->date(), "dddd"));
+    content.replace("[TANGGAL_MASEHI]", locale.toString(ui->dateEdit->date(), "d MMMM yyyy"));
+    content.replace("[TANGGAL_HIJRIYAH]", QString("%1 %2 %3")
+                    .arg(QString::number(ui->hijriDateSpinBox->value()))
+                    .arg(ui->hijriMonthComboBox->currentText())
+                    .arg(QString::number(ui->hijriYearSpinBox->value())));
+    content.replace("[WAKTU_MULAI]", ui->startTimeComboBox->lineEdit()->text().trimmed());
+    content.replace("[WAKTU_SELESAI]", ui->endTimeComboBox->lineEdit()->text().trimmed());
+
+    PreviewTextDialog dialog(this);
+    dialog.setTemplateName(tpl.name);
+    dialog.setTextContent(content);
+    dialog.exec();
 }

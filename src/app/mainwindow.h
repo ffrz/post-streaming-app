@@ -31,7 +31,6 @@ public slots:
     void manageBooks();
     void manageLocations();
     void manageStudyTextTemplates();
-    void manageAudioTextTemplates();
 
 private slots:
     void updateMenu();
