@@ -170,6 +170,9 @@
                <height>65</height>
               </size>
              </property>
+             <property name="tabChangesFocus">
+              <bool>true</bool>
+             </property>
              <property name="plainText">
               <string/>
              </property>
@@ -474,7 +477,7 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>50</width>
+               <width>110</width>
                <height>0</height>
               </size>
              </property>
@@ -504,13 +507,6 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="addressEdit">
-             <property name="clearButtonEnabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_10">
              <property name="text">
@@ -522,6 +518,19 @@
             <widget class="QLineEdit" name="locationUrlEdit">
              <property name="clearButtonEnabled">
               <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPlainTextEdit" name="addressEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>65</height>
+              </size>
+             </property>
+             <property name="tabChangesFocus">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -766,6 +775,8 @@
   <tabstop>browseAudioButton</tabstop>
   <tabstop>audioCompressionComboBox</tabstop>
   <tabstop>processButton</tabstop>
+  <tabstop>textTemplateComboBox</tabstop>
+  <tabstop>generateTextButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

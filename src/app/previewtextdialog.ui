@@ -15,6 +15,13 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLabel" name="templateNameLabel">
+     <property name="text">
+      <string>Nama Template</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="label">
      <property name="text">
       <string>Teks Output:</string>
@@ -25,16 +32,23 @@
     <widget class="QPlainTextEdit" name="contentEdit"/>
    </item>
    <item>
-    <widget class="QLabel" name="templateNameLabel">
-     <property name="text">
-      <string>Nama Template</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <spacer name="horizontalSpacer">
+      <widget class="QPushButton" name="selectAllButton">
+       <property name="text">
+        <string>Select &amp;Al [Ctrl+A)]</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="copyButton">
+       <property name="text">
+        <string>&amp;Copy [Ctrl+C]</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
