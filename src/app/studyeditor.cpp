@@ -81,7 +81,7 @@ StudyEditor::StudyEditor(ProjectDocument *d, QWidget *parent)
     ui->startTimeComboBox->lineEdit()->setText(data.value(ProjectDocument::DATA_KEY_START_TIME).toString());
     ui->endTimeComboBox->lineEdit()->setText(data.value(ProjectDocument::DATA_KEY_END_TIME).toString());
     ui->placeComboBox->lineEdit()->setText(data.value(ProjectDocument::DATA_KEY_LOCATION_NAME).toString());
-    ui->addressEdit->setText(data.value(ProjectDocument::DATA_KEY_LOCATION_ADDRESS).toString());
+    ui->addressEdit->setPlainText(data.value(ProjectDocument::DATA_KEY_LOCATION_ADDRESS).toString());
     ui->locationUrlEdit->setText(data.value(ProjectDocument::DATA_KEY_LOCATION_URL).toString());
 
     // connect signal slots
@@ -128,7 +128,7 @@ void StudyEditor::onPlaceChanged(int index)
     }
 
     Location location = db::getLocationById(ui->placeComboBox->currentData().toInt());
-    ui->addressEdit->setText(location.address);
+    ui->addressEdit->setPlainText(location.address);
     ui->locationUrlEdit->setText(location.url);
 }
 
@@ -187,13 +187,12 @@ void StudyEditor::onDateChanged(const QDate& date)
 void StudyEditor::onProcessButtonClicked()
 {
     QString studyTitle = ui->studyTitleComboBox->lineEdit()->text().trimmed();;
-    //QString studySubTitle = ui->studySubTitleEdit->text().trimmed();;
     if (studyTitle.isEmpty()) {
         ui->studyTitleComboBox->setFocus();
         return;
     }
     QString teacherName = ui->teacherComboBox->lineEdit()->text().trimmed();
-    //QString teacherDescription = ui->teacherDescriptionEdit->text().trimmed();
+    teacherName.replace("حفظه الله", "hafidzhahullah");
     QString studyType = ui->studyTypeComboBox->currentText();
 
     // generate teks
@@ -212,7 +211,13 @@ void StudyEditor::onProcessButtonClicked()
     QString outputDir = projectDir.absolutePath() + QDir::separator() +"output";
 
     _inputAudioFileName = audioInputFileName;
-    _outputAudioFileName = outputDir + QDir::separator() + QString("Al Ustadz " + teacherName + " - " + studyTitle + ".mp3");;
+    _outputAudioFileName = outputDir + QDir::separator() + QString(teacherName + " - " + studyTitle);
+    if (_outputAudioFileName.length() > 220) {
+        _outputAudioFileName.truncate(220);
+        _outputAudioFileName.append("...");
+    }
+    _outputAudioFileName.append(".mp3");
+
     QString compression = ui->audioCompressionComboBox->currentData().toString();
     // generate teks audio
     // compress & update mp3 tag
@@ -228,7 +233,7 @@ void StudyEditor::onProcessButtonClicked()
                       " \"{output}\"";
     command.replace("{input}", audioInputFileName);
     command.replace("{title}", studyTitle);
-    command.replace("{artist}", teacherName + " حفظه الله");
+    command.replace("{artist}", teacherName);
     command.replace("{genre}", studyType);
     command.replace("{album}", studyType);
     command.replace("{date}", QString::number(ui->dateEdit->date().year()));
@@ -272,7 +277,7 @@ void StudyEditor::save()
     data.insert(ProjectDocument::DATA_KEY_START_TIME, ui->startTimeComboBox->lineEdit()->text().trimmed());
     data.insert(ProjectDocument::DATA_KEY_END_TIME, ui->endTimeComboBox->lineEdit()->text().trimmed());
     data.insert(ProjectDocument::DATA_KEY_LOCATION_NAME, ui->placeComboBox->lineEdit()->text().trimmed());
-    data.insert(ProjectDocument::DATA_KEY_LOCATION_ADDRESS, ui->addressEdit->text().trimmed());
+    data.insert(ProjectDocument::DATA_KEY_LOCATION_ADDRESS, ui->addressEdit->toPlainText().trimmed());
     data.insert(ProjectDocument::DATA_KEY_LOCATION_URL, ui->locationUrlEdit->text().trimmed());
 
     doc->setData(data);
@@ -375,7 +380,7 @@ void StudyEditor::refreshBooks()
 void StudyEditor::refreshStudyTextTemplates()
 {
     ui->textTemplateComboBox->clear();
-    for (const StudyTextTemplate &d: db::getAllStudyTextTemplatesOrderByName()) {
+    for (const StudyTextTemplate &d: db::getAllStudyTextTemplatesOrderByNameWithoutContent()) {
         ui->textTemplateComboBox->addItem(d.name, d.id);
     }
     ui->textTemplateComboBox->setCurrentIndex(-1);
@@ -392,21 +397,28 @@ void StudyEditor::showRreviewStudyTextDialog()
     QString content = tpl.content;
     QLocale locale  = QLocale(QLocale::Indonesian, QLocale::Indonesia);
 
+    QString dayName = locale.toString(ui->dateEdit->date(), "dddd");
+    if (dayName.toLower() == "minggu")
+        dayName = "Ahad";
+
     content.replace("[NAMA_USTADZ]", ui->teacherComboBox->lineEdit()->text().trimmed());
     content.replace("[TITEL_USTADZ]", ui->teacherDescriptionEdit->text().trimmed());
     content.replace("[JUDUL_KITAB]", ui->studyTitleComboBox->lineEdit()->text().trimmed());
+    content.replace("[JUDUL_KITAB_UPPER]", ui->studyTitleComboBox->lineEdit()->text().trimmed().toUpper());
     content.replace("[JUDUL_KAJIAN]", ui->studyTitleComboBox->lineEdit()->text().trimmed());
+    content.replace("[JUDUL_KAJIAN_UPPER]", ui->studyTitleComboBox->lineEdit()->text().trimmed().toUpper());
     content.replace("[SUBJUDUL]", ui->studySubTitleEdit->text().trimmed());
     content.replace("[PEMBAHASAN]", ui->studyDescriptionEdit->toPlainText().trimmed());
     content.replace("[PENULIS]", ui->authorEdit->text().trimmed());
     content.replace("[PENSYARAH]", ui->narratorEdit->text().trimmed());
     content.replace("[URL_POSTER]", ui->studyUrlEdit->text().trimmed());
     content.replace("[NAMA_TEMPAT]", ui->placeComboBox->lineEdit()->text().trimmed());
-    content.replace("[ALAMAT]", ui->addressEdit->text().trimmed());
+    content.replace("[NAMA_TEMPAT_UPPER]", ui->placeComboBox->lineEdit()->text().trimmed().toUpper());
+    content.replace("[ALAMAT]", ui->addressEdit->toPlainText().trimmed());
     content.replace("[URL_LOKASI]", ui->locationUrlEdit->text().trimmed());
-    content.replace("[HARI]", locale.toString(ui->dateEdit->date(), "dddd"));
+    content.replace("[HARI]", dayName);
     content.replace("[TANGGAL_MASEHI]", locale.toString(ui->dateEdit->date(), "d MMMM yyyy"));
-    content.replace("[TANGGAL_HIJRIYAH]", QString("%1 %2 %3")
+    content.replace("[TANGGAL_HIJRIYAH]", QString("%1 %2 %3H")
                     .arg(QString::number(ui->hijriDateSpinBox->value()))
                     .arg(ui->hijriMonthComboBox->currentText())
                     .arg(QString::number(ui->hijriYearSpinBox->value())));

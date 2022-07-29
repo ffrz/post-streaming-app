@@ -8,6 +8,8 @@ PreviewTextDialog::PreviewTextDialog(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->closeButton, SIGNAL(clicked()), SLOT(accept()));
+    connect(ui->selectAllButton, SIGNAL(clicked()), ui->contentEdit, SLOT(selectAll()));
+    connect(ui->copyButton, SIGNAL(clicked()), ui->contentEdit, SLOT(copy()));
 }
 
 PreviewTextDialog::~PreviewTextDialog()

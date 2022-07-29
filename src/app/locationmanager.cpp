@@ -78,7 +78,7 @@ void LocationManager::Editor::edit(Location *item)
 {
     id = item->id;
     ui->nameEdit->setText(item->name);
-    ui->addressEdit->setText(item->address);
+    ui->addressEdit->setPlainText(item->address);
     ui->urlEdit->setText(item->url);
 }
 
@@ -88,7 +88,7 @@ void LocationManager::Editor::accept()
 
     item.id = id;
     item.name = ui->nameEdit->text().trimmed();
-    item.address = ui->addressEdit->text().trimmed();
+    item.address = ui->addressEdit->toPlainText().trimmed();
     item.url = ui->urlEdit->text().trimmed();
 
     if (item.name.isEmpty()) {

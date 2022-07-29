@@ -50,6 +50,9 @@ public:
 public slots:
     void accept();
 
+private slots:
+    void onInsertComboBoxActivated(int);
+
 private:
     Ui::StudyTextTemplateEditor *ui;
     int id;
