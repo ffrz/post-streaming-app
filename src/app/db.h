@@ -35,6 +35,7 @@ bool saveBook(Book &book);
 bool removeBook(const Book &book);
 
 StudyTextTemplates getAllStudyTextTemplatesOrderById();
+StudyTextTemplates getAllStudyTextTemplatesOrderByNameWithoutContent();
 StudyTextTemplates getAllStudyTextTemplatesOrderByName();
 StudyTextTemplates getAllStudyTextTemplates(const QString& orderColumn);
 StudyTextTemplate getStudyTextTemplateById(int id);

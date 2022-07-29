@@ -317,6 +317,21 @@ bool removeBook(const Book &book)
     return DB_EXEC(q);
 }
 
+StudyTextTemplates getAllStudyTextTemplatesOrderByNameWithoutContent()
+{
+    StudyTextTemplates items;
+    QSqlQuery q(db());
+    q.prepare("select id, name from study_text_templates order by name asc");
+    DB_EXEC(q);
+    while (q.next()) {
+        StudyTextTemplate d;
+        d.id = q.value("id").toInt();
+        d.name = q.value("name").toString();
+        items.append(d);
+    }
+    return items;
+}
+
 StudyTextTemplates getAllStudyTextTemplatesOrderById()
 {
     return getAllStudyTextTemplates("id");
