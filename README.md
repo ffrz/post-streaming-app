@@ -1,16 +1,16 @@
 TODO:
-X Implementasikan pemilihan level kompresi
-X Pada saat mengkompresi audio, pisahkan thread proses ffmpeg
+✓ Implementasikan pemilihan level kompresi
+✓ Pada saat mengkompresi audio, pisahkan thread proses ffmpeg
   agar UI tidak freeze, kunci UI dan buat indikator progress ke user.
-X Implementasikan pemilihan output folder - output otomatis ke folder output
-X Buat about dialog untuk menginformasikan tentang aplikasi
-X Implementasikan penyimpanan dengan mekanisme berbasis project
+✓ Implementasikan pemilihan output folder - output otomatis ke folder output
+✓ Buat about dialog untuk menginformasikan tentang aplikasi
+✓ Implementasikan penyimpanan dengan mekanisme berbasis project
   dalam 1 direktori yg nantinya berisi file rencana kajian (json),
   file audio yg telah dimastering, file template teks kajian,
   template teks audio kajian
-X Buat editor daftar kitab
-X Buat editor daftar asatidzah
-X Buat editor daftar lokasi
-- Implementasikan pemilihan template untuk text generator
-- Implementasikan generate text
-- Sediakan fitur mapping variabel ke file template
+✓ Buat editor daftar kitab
+✓ Buat editor daftar asatidzah
+✓ Buat editor daftar lokasi
+✓ Implementasikan manager template teks kajian
+✓ Perbarui UI untuk generator teks kajian
+□ Tambahkan fungsi untuk duplikat template teks kajian
